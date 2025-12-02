@@ -15,8 +15,8 @@ const button = document.getElementById('myButton');
 const resetButton = document.getElementById('resetButton');
 const resetCounterButton = document.getElementById('resetCounterButton');
 const counter = document.getElementById('counter');
+const resetAll = document.getElementById('resetAll');
 const welcomeElement = document.getElementById('welcome'); // Убери если нет в HTML
-const resetAll = document.getElementById('resetAll'); // Сброс всего
 
 // 3. Применяем сохранённые настройки
 if (welcomeElement) {
@@ -130,13 +130,33 @@ if (theme === 'dark') {
     document.body.classList.add('light-theme');
 }
     // 12. Обработчик для кнопки сброса всего
-resetAll.addEventListener('click', function() {  // ОШИБКА 1: resetall → resetAll
+resetAll.addEventListener('click', function() {
+    // 1. Сбрасываем счётчик
     count = 0;
     counter.textContent = count;
     localStorage.setItem('clickCount', count);
-    console.log('Счётчик сброшен! Текущее значение: 0');
-    // ОШИБКА 2: не нужно вкладывать!
+    
+    // 2. Возвращаем текст основной кнопки
     button.textContent = 'Нажми меня';
-    document.body.classList.remove('clicked-green'); 
-    console.log('Цвет сброшен!');
-    });
+    
+    // 3. Убираем зелёный фон если есть
+    document.body.classList.remove('clicked-green');
+    
+    // 4. ВОТ ЭТО НОВОЕ: Возвращаем светлую тему
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+    themeToggleBtn.textContent = '🌙 Тёмная тема';
+    localStorage.setItem('theme', 'light');
+    
+    // 5. Скрываем блок с localStorage если открыт
+    if (storageVisible) {
+        storageInfo.classList.remove('visible');
+        showStorageBtn.textContent = '📊 Показать сохранённое';
+        storageVisible = false;
+        setTimeout(() => {
+            storageInfo.innerHTML = '';
+        }, 500);
+    }
+    
+    console.log('✅ Всё сброшено! Счётчик: 0, Тема: светлая');
+});
