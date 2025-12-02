@@ -128,14 +128,13 @@ if (theme === 'dark') {
 } else {
     document.body.classList.add('light-theme');
 }
-// 12. Обработчик для кнопки сброса всего
-resetall.addEventListener('click', function() {  // ОШИБКА 1: resetall → resetAll
+    // 12. Обработчик для кнопки сброса всего
+resetAll.addEventListener('click', function() {  // ОШИБКА 1: resetall → resetAll
     count = 0;
     counter.textContent = count;
     localStorage.setItem('clickCount', count);
     console.log('Счётчик сброшен! Текущее значение: 0');
-    resetButton.addEventListener('click', function() {  // ОШИБКА 2: не нужно вкладывать!
+    // ОШИБКА 2: не нужно вкладывать!
     button.textContent = 'Нажми меня';
     document.body.classList.remove('clicked-green'); 
     console.log('Цвет сброшен!');
-});  // ОШИБКА 3: не хватает закрывающих скобок
