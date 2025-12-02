@@ -139,3 +139,20 @@ body.dark-theme #storageInfo {
 .clicked-green {
     background: lightgreen !important;
 }
+#resetAll {
+    padding: 10px 20px;
+    background: #9b59b6;/*Фиолетовый*/
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#resetAll:hover {
+        background: #8e44ad;
+        }
+
+
+
+
