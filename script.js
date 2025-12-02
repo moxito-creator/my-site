@@ -16,6 +16,7 @@ const resetButton = document.getElementById('resetButton');
 const resetCounterButton = document.getElementById('resetCounterButton');
 const counter = document.getElementById('counter');
 const welcomeElement = document.getElementById('welcome'); // Убери если нет в HTML
+const resetAll = document.getElementById('resetAll'); // Сброс всего
 
 // 3. Применяем сохранённые настройки
 if (welcomeElement) {
