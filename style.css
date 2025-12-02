@@ -34,3 +34,18 @@ body {
 #resetButton:hover {
     background: #d32f2f;
 }
+/* Кнопка сброса счётчика */
+#resetCounterButton {
+    padding: 10px 20px;
+    background: #ff9800; /* Оранжевый */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#resetCounterButton:hover {
+    background: #f57c00; /* Более тёмный оранжевый при наведении */
+}

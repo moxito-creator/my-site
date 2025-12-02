@@ -5,7 +5,6 @@
 -->
 <!DOCTYPE html>
 <html lang="ru">
-...
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +14,17 @@
 <body>
     <h1>Я молодец!</h1>
     <p>Ура! Я создал страницу в VS Code!</p>
+    <!-- Основная кнопка -->
     <button id="myButton">Нажми меня</button>
-    <button id="resetButton">Сбросить</button>  
+    <!-- Кнопка сброса ЦВЕТА (оставляем старый id) -->
+    <button id="resetButton">Сбросить цвет</button> 
+    
+    <!-- Счётчик -->
+    <p>Кликов: <span id="counter">0</span></p>
+    
+    <!-- Кнопка сброса СЧЁТЧИКА (новый уникальный id) -->
+    <button id="resetCounterButton">Сбросить счётчик</button> 
+    
     <script src="script.js"></script>
 </body>
 </html>
