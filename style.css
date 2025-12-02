@@ -1,0 +1,30 @@
+body {
+    background: lightblue;
+}
+#myButton {
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#myButton:hover {
+    background: #45a049;
+}
+#resetButton {
+    padding: 10px 20px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#resetButton:hover {
+    background: #d32f2f;
+}
