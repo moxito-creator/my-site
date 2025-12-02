@@ -49,3 +49,93 @@ body {
 #resetCounterButton:hover {
     background: #f57c00; /* Более тёмный оранжевый при наведении */
 }
+/* Кнопка переключения темы */
+#themeToggleBtn {
+    padding: 10px 20px;
+    background: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#themeToggleBtn:hover {
+    background: #5a4fcf;
+}
+
+/* Кнопка показа хранилища */
+#showStorageBtn {
+    padding: 10px 20px;
+    background: #00b894;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#showStorageBtn:hover {
+    background: #00a085;
+}
+
+/* Стили для светлой темы (по умолчанию) */
+body.light-theme {
+    background: lightblue;
+    color: #333;
+}
+
+/* Стили для тёмной темы */
+body.dark-theme {
+    background: #333;
+    color: #fff;
+}
+
+/* Специфичные стили для тёмной темы */
+body.dark-theme #storageInfo {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #ff9800;
+    color: #fff;
+}
+
+/* Заголовки внутри storageInfo */
+#storageInfo h3 {
+    margin-top: 0;
+    color: inherit; /* Наследует цвет темы */
+}
+
+/* Текст внутри storageInfo */
+#storageInfo p {
+    margin: 5px 0;
+    color: inherit; /* Наследует цвет темы */
+}
+/* ==============================
+   КОНТЕЙНЕР ДЛЯ ИНФОРМАЦИИ
+   ============================== */
+
+#storageInfo {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 20px;
+    padding: 0 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #6c5ce7;
+    transition: all 0.5s ease;
+}
+
+#storageInfo.visible {
+    display: block;
+    max-height: 500px;
+    opacity: 1;
+    padding: 15px;
+}
+
+/* Эффект зелёного фона при клике */
+.clicked-green {
+    background: lightgreen !important;
+}

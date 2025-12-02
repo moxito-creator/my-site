@@ -1,48 +1,130 @@
 /* 
   script.js
   JavaScript логика для моего первого сайта
-  Обрабатывает клики по кнопке, меняет содержимое
 */
 
-// 1. Находим ВСЕ элементы на странице
+// 1. Загружаем сохранённые данные из localStorage
+const savedCount = localStorage.getItem('clickCount') || 0;
+const userName = localStorage.getItem('userName') || 'Guest';
+const theme = localStorage.getItem('theme') || 'light';
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const showStorageBtn = document.getElementById('showStorageBtn');
+const storageInfo = document.getElementById('storageInfo');
+// 2. Находим ВСЕ элементы на странице
 const button = document.getElementById('myButton');
-const resetButton = document.getElementById('resetButton'); // Кнопка сброса цвета
-const resetCounterButton = document.getElementById('resetCounterButton'); // НОВАЯ кнопка
+const resetButton = document.getElementById('resetButton');
+const resetCounterButton = document.getElementById('resetCounterButton');
 const counter = document.getElementById('counter');
+const welcomeElement = document.getElementById('welcome'); // Убери если нет в HTML
 
-// 2. Переменная для хранения количества кликов
-let count = 0;
+// 3. Применяем сохранённые настройки
+if (welcomeElement) {
+    welcomeElement.textContent = `Добро пожаловать, ${userName}!`;
+}
 
-// 3. Функция увеличения счётчика
+// 4. Инициализируем счётчик сохранённым значением
+let count = Number(savedCount);
+counter.textContent = count;
+
+// 5. Функция увеличения счётчика
 function increase() {
     count++;
     counter.textContent = count;
+    localStorage.setItem('clickCount', count);
 }
 
-// 4. Обработчик для основной кнопки
+// 6. Обработчик для основной кнопки
 button.addEventListener('click', function() {
     button.textContent = 'Ура! Нажато!';
-    document.body.style.backgroundColor = 'lightgreen';
+    document.body.classList.add('clicked-green'); // Добавить класс
     console.log('Кнопка была нажата!');
-    increase(); // Увеличиваем счётчик
+    increase();
 });
 
-// 5. Обработчик для кнопки сброса ЦВЕТА
+// 7. Обработчик для кнопки сброса ЦВЕТА
 resetButton.addEventListener('click', function() {
-    // Возвращаем первоначальный текст первой кнопке
     button.textContent = 'Нажми меня';
-    
-    // Возвращаем первоначальный цвет фона
-    document.body.style.backgroundColor = 'lightblue';
-    
+    document.body.classList.remove('clicked-green'); // Удалить класс
     console.log('Цвет сброшен!');
 });
 
-// 6. Обработчик для кнопки сброса СЧЁТЧИКА (НОВАЯ ФУНКЦИЯ!)
+// 8. Обработчик для кнопки сброса СЧЁТЧИКА
 resetCounterButton.addEventListener('click', function() {
-    // Сбрасываем счётчик
     count = 0;
     counter.textContent = count;
-    
+    localStorage.setItem('clickCount', count); // ← ДОБАВЬ СОХРАНЕНИЕ!
     console.log('Счётчик сброшен! Текущее значение: 0');
 });
+// 9. Обработчик для переключения темы
+themeToggleBtn.addEventListener('click', function() {
+    const isDark = document.body.classList.contains('dark-theme');
+    
+    if (isDark) {
+        // Включаем светлую тему
+        document.body.classList.remove('dark-theme');
+        document.body.classList.add('light-theme');
+        themeToggleBtn.textContent = '🌙 Тёмная тема';
+        localStorage.setItem('theme', 'light');
+    } else {
+        // Включаем тёмную тему
+        document.body.classList.remove('light-theme');
+        document.body.classList.add('dark-theme');
+        themeToggleBtn.textContent = '☀️ Светлая тема';
+        localStorage.setItem('theme', 'dark');
+    }
+    
+    console.log('Тема изменена');
+});
+
+// 10. Обработчик для показа localStorage (с анимацией)
+let storageVisible = false;
+
+showStorageBtn.addEventListener('click', function() {
+    if (storageVisible) {
+        // Скрываем с анимацией
+        storageInfo.classList.remove('visible');
+        showStorageBtn.textContent = '📊 Показать сохранённое';
+        storageVisible = false;
+        console.log('Данные localStorage скрыты');
+        
+        // Очищаем контент после анимации
+        setTimeout(() => {
+            storageInfo.innerHTML = '';
+        }, 500); // 500ms = время анимации из CSS
+    } else {
+        // Показываем с анимацией
+        const allData = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            allData[key] = localStorage.getItem(key);
+        }
+        
+        let infoHTML = '<h3>📁 Данные в localStorage:</h3>';
+        if (Object.keys(allData).length === 0) {
+            infoHTML += '<p>Нет сохранённых данных</p>';
+        } else {
+            for (const [key, value] of Object.entries(allData)) {
+                infoHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+        }
+        
+        // Устанавливаем контент
+        storageInfo.innerHTML = infoHTML;
+        // Даём время браузеру на отрисовку, затем запускаем анимацию
+        setTimeout(() => {
+            storageInfo.classList.add('visible');
+        }, 10);
+        
+        showStorageBtn.textContent = '📁 Скрыть сохранённое';
+        storageVisible = true;
+        console.log('Показаны данные localStorage:', allData);
+    }
+});
+
+// 11. Применяем сохранённую тему при загрузке
+if (theme === 'dark') {
+    document.body.classList.add('dark-theme');
+    themeToggleBtn.textContent = '☀️ Светлая тема';
+} else {
+    document.body.classList.add('light-theme');
+}
