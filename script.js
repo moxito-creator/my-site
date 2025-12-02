@@ -159,4 +159,8 @@ resetAll.addEventListener('click', function() {
     }
     
     console.log('✅ Всё сброшено! Счётчик: 0, Тема: светлая');
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 5569c238beff005f974909cb2315aa54902530e7
