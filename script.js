@@ -139,3 +139,4 @@ resetAll.addEventListener('click', function() {  // ОШИБКА 1: resetall →
     button.textContent = 'Нажми меня';
     document.body.classList.remove('clicked-green'); 
     console.log('Цвет сброшен!');
+    });
